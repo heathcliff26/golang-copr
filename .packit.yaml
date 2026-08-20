@@ -21,11 +21,13 @@ jobs:
     trigger: pull_request
     branch: main
     targets:
-      - fedora-all
+      - fedora-all-x86_64
+      - fedora-all-aarch64
 
   - job: copr_build
     trigger: release
     targets:
-      - fedora-all
+      - fedora-all-x86_64
+      - fedora-all-aarch64
     owner: heathcliff26
     project: golang
