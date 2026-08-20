@@ -11,12 +11,16 @@ URL:            https://go.dev/
 
 Source0:        go%{version}.src.tar.gz
 
-BuildRequires:  golang >= 1.22
+BuildRequires:  golang >= 1.25
 BuildRequires:  gcc
 BuildRequires:  glibc-devel
 BuildRequires:  make
+
+Requires:       gcc
 Requires:       glibc
+
 Provides:       golang = %{version}-%{release}
+Provides:       go = %{version}-%{release}
 
 %description
 Go is an open source programming language designed for building simple,
