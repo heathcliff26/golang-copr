@@ -1,0 +1,31 @@
+# See the documentation for more information:
+# https://packit.dev/docs/configuration/
+
+specfile_path: tmp/golang.spec
+actions:
+  post-upstream-clone:
+    - bash -c 'mkdir -p tmp; cp golang.spec tmp/; version=$(sed -n "s/^%global go_version //p" golang.spec); curl --fail --silent --show-error --location -o "tmp/go${version}.src.tar.gz" "https://go.dev/dl/go${version}.src.tar.gz"'
+    - mkdir -p tmp
+    - cp golang.spec tmp/
+    - bash -c 'version=$(sed -n "s/^%global go_version //p" golang.spec); curl -SL -o "tmp/go${version}.src.tar.gz" "https://go.dev/dl/go${version}.src.tar.gz"'
+  fix-spec-file:
+    - "sed -i 's#^Source0:.*#Source0:        go%{version}.src.tar.gz#' tmp/golang.spec"
+
+# name in upstream package repository or registry (e.g. in PyPI)
+upstream_package_name: golang
+# downstream (Fedora) RPM package name
+downstream_package_name: golang
+
+jobs:
+  - job: copr_build
+    trigger: pull_request
+    branch: main
+    targets:
+      - fedora-all
+
+  - job: copr_build
+    trigger: release
+    targets:
+      - fedora-all
+    owner: heathcliff26
+    project: golang
