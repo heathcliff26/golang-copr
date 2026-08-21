@@ -1,7 +1,10 @@
 SHELL := bash
 
 # Build rpm with code in current workdir using packit
-packit:
+packit: packit-mock
+
+# Build rpm with code in current workdir using packit locally
+packit-local:
 	packit build locally
 
 # Build rpm of upstream code using packit + mock
@@ -27,6 +30,7 @@ help:
 
 .PHONY: \
 	packit \
+	packit-local \
 	packit-mock \
 	update \
 	clean \
