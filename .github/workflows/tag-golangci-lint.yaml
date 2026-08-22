@@ -1,0 +1,18 @@
+---
+name: "Tag golangci-lint"
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "golangci-lint.spec"
+
+
+jobs:
+  tag:
+    uses: heathcliff26/ci/.github/workflows/run-script.yaml@main
+    permissions:
+      contents: write
+    with:
+      cmd: hack/tag.sh golangci-lint

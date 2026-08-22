@@ -1,28 +1,34 @@
 # See the documentation for more information:
 # https://packit.dev/docs/configuration/
 
-specfile_path: tmp/golang.spec
-actions:
-  post-upstream-clone:
-    - hack/packit-post-clone.sh
-  fix-spec-file:
-    - "sed -i 's#^Source0:.*#Source0:        go%{version}.src.tar.gz#' tmp/golang.spec"
-
-# name in upstream package repository or registry (e.g. in PyPI)
-upstream_package_name: golang
-# downstream (Fedora) RPM package name
-downstream_package_name: golang
+packages:
+  golang:
+    upstream_package_name: golang
+    downstream_package_name: golang
+    specfile_path: tmp/golang.spec
+    actions:
+      post-upstream-clone:
+        - hack/packit-prep-golang.sh
+      fix-spec-file:
+        - "sed -i 's#^Source0:.*#Source0:        go%{version}.src.tar.gz#' tmp/golang.spec"
+  golangci-lint:
+    upstream_package_name: golangci-lint
+    downstream_package_name: golangci-lint
+    specfile_path: tmp/golangci-lint.spec
+    actions:
+      post-upstream-clone:
+        - hack/packit-prep-golangci-lint.sh
+      fix-spec-file:
+        - "sed -i 's#^Source0:.*#Source0:        golangci-lint-%{version}.tar.gz#' tmp/golangci-lint.spec"
 
 targets:
   - fedora-all-x86_64
   - fedora-all-aarch64
+additional_repos:
+  - copr://heathcliff26/golang
 
 jobs:
   - job: copr_build
     trigger: pull_request
     branch: main
-
-  - job: copr_build
-    trigger: release
-    owner: heathcliff26
-    project: golang
+    enable_net: true

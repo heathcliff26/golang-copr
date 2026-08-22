@@ -18,6 +18,10 @@ case "${pkg}" in
         version="$(sed -n "s/^%global go_version //p" golang.spec)"
         release="$(sed -n "s/^%global go_release //p" golang.spec)"
         ;;
+    golangci-lint)
+        version="$(sed -n "s/^%global gocilint_version //p" golangci-lint.spec)"
+        release="$(sed -n "s/^%global gocilint_release //p" golangci-lint.spec)"
+        ;;
     *)
         echo "Unknown package: ${pkg}"
         exit 1
