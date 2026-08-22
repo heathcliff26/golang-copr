@@ -4,9 +4,7 @@
 specfile_path: tmp/golang.spec
 actions:
   post-upstream-clone:
-    - mkdir -p tmp
-    - cp golang.spec tmp/
-    - bash -c 'version=$(sed -n "s/^%global go_version //p" golang.spec); curl -SL -o "tmp/go${version}.src.tar.gz" "https://go.dev/dl/go${version}.src.tar.gz"'
+    - hack/packit-post-clone.sh
   fix-spec-file:
     - "sed -i 's#^Source0:.*#Source0:        go%{version}.src.tar.gz#' tmp/golang.spec"
 
