@@ -12,9 +12,16 @@ packit-mock:
 	packit build in-mock --resultdir tmp
 	rm *.src.rpm
 
+# Update all spec files to latest version
+update: update-golang update-golangci-lint
+
 # Update the golang version to latest
-update:
-	hack/update.sh
+update-golang:
+	hack/update-golang.sh
+
+# Update the golangci-lint version to latest
+update-golangci-lint:
+	hack/update-golangci-lint.sh
 
 # Clean build artifacts
 clean:
@@ -33,6 +40,8 @@ help:
 	packit-local \
 	packit-mock \
 	update \
+	update-golang \
+	update-golangci-lint \
 	clean \
 	help \
 	$(NULL)
