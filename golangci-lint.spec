@@ -1,4 +1,4 @@
-%global gocilint_version 2.13.1
+%global gocilint_version 2.13.2
 %global gocilint_release 1
 %global debug_package %{nil}
 
