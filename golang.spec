@@ -1,5 +1,5 @@
-%global go_version 1.27.0
-%global go_release 2
+%global go_version 1.27.1
+%global go_release 1
 %global debug_package %{nil}
 
 # Do not check any files in doc or src for requires
