@@ -1,4 +1,4 @@
-%global go_version 1.27.2
+%global go_version 1.27.3
 %global go_release 1
 %global debug_package %{nil}
 
