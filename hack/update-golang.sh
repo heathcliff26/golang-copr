@@ -4,7 +4,7 @@ set -euo pipefail
 
 spec_file=golang.spec
 
-version=$(curl --fail --silent --show-error https://go.dev/dl/?mode=json \
+version=$(curl -fsSL --show-error https://go.dev/dl/?mode=json \
     | sed -n 's/.*"version": "go\([0-9][0-9.]*\)".*/\1/p' \
     | head -n1)
 

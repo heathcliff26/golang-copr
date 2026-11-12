@@ -12,6 +12,16 @@ packit-mock:
 	packit build in-mock --resultdir tmp
 	rm *.src.rpm
 
+# Build golang using packit + mock
+golang:
+	packit build in-mock --resultdir tmp -p golang
+	rm *.src.rpm
+
+# Build golangci-lint using packit + mock
+golangci-lint:
+	packit build in-mock --resultdir tmp -p golangci-lint
+	rm *.src.rpm
+
 # Update all spec files to latest version
 update: update-golang update-golangci-lint
 
@@ -39,6 +49,8 @@ help:
 	packit \
 	packit-local \
 	packit-mock \
+	golang \
+	golangci-lint \
 	update \
 	update-golang \
 	update-golangci-lint \

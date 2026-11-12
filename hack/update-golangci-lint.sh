@@ -4,7 +4,7 @@ set -euo pipefail
 
 spec_file=golangci-lint.spec
 
-version="$(curl --silent "https://api.github.com/repos/golangci/golangci-lint/tags?per_page=20" | jq -r ".[0].name")"
+version="$(curl -fsSL --show-error "https://api.github.com/repos/golangci/golangci-lint/tags?per_page=20" | jq -r ".[0].name")"
 version="${version#v}"
 
 if [[ -z ${version} ]]; then
