@@ -20,6 +20,15 @@ packages:
         - hack/packit-prep-golangci-lint.sh
       fix-spec-file:
         - "sed -i 's#^Source0:.*#Source0:        golangci-lint-%{version}.tar.gz#' tmp/golangci-lint.spec"
+  gosec:
+    upstream_package_name: gosec
+    downstream_package_name: gosec
+    specfile_path: tmp/gosec.spec
+    actions:
+      post-upstream-clone:
+        - hack/packit-prep-gosec.sh
+      fix-spec-file:
+        - "sed -i 's#^Source0:.*#Source0:        gosec-%{version}.tar.gz#' tmp/gosec.spec"
 
 targets:
   - fedora-all-x86_64

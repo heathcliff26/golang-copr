@@ -22,8 +22,13 @@ golangci-lint:
 	packit build in-mock --resultdir tmp -p golangci-lint
 	rm *.src.rpm
 
+# Build gosec using packit + mock
+gosec:
+	packit build in-mock --resultdir tmp -p gosec
+	rm *.src.rpm
+
 # Update all spec files to latest version
-update: update-golang update-golangci-lint
+update: update-golang update-golangci-lint update-gosec
 
 # Update the golang version to latest
 update-golang:
@@ -32,6 +37,10 @@ update-golang:
 # Update the golangci-lint version to latest
 update-golangci-lint:
 	hack/update-golangci-lint.sh
+
+# Update the gosec version to latest
+update-gosec:
+	hack/update-gosec.sh
 
 # Clean build artifacts
 clean:
@@ -51,9 +60,11 @@ help:
 	packit-mock \
 	golang \
 	golangci-lint \
+	gosec \
 	update \
 	update-golang \
 	update-golangci-lint \
+	update-gosec \
 	clean \
 	help \
 	$(NULL)

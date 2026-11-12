@@ -1,0 +1,17 @@
+---
+name: "Tag gosec"
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "gosec.spec"
+
+jobs:
+  tag:
+    uses: heathcliff26/ci/.github/workflows/run-script.yaml@main
+    permissions:
+      contents: write
+    with:
+      cmd: hack/tag.sh gosec
