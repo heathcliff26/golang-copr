@@ -4,7 +4,7 @@ set -euo pipefail
 
 spec_file=gosec.spec
 
-version="$(curl -fsSL --show-error "https://api.github.com/repos/securego/gosec/tags?per_page=20" | jq -r ".[0].name")"
+version="$(curl -fsSL --show-error "https://api.github.com/repos/securego/gosec/releases/latest" | jq -r ".tag_name")"
 version="${version#v}"
 
 if [[ -z ${version} ]]; then
