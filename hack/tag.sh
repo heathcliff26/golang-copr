@@ -22,6 +22,10 @@ case "${pkg}" in
         version="$(sed -n "s/^%global gocilint_version //p" golangci-lint.spec)"
         release="$(sed -n "s/^%global gocilint_release //p" golangci-lint.spec)"
         ;;
+    gosec)
+        version="$(sed -n "s/^%global gosec_version //p" gosec.spec)"
+        release="$(sed -n "s/^%global gosec_release //p" gosec.spec)"
+        ;;
     *)
         echo "Unknown package: ${pkg}"
         exit 1
