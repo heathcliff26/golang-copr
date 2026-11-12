@@ -8,7 +8,6 @@ on:
     paths:
       - "golangci-lint.spec"
 
-
 jobs:
   tag:
     uses: heathcliff26/ci/.github/workflows/run-script.yaml@main
