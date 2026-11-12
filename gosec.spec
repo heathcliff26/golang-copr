@@ -1,5 +1,5 @@
 %global gosec_version 2.30.0
-%global gosec_release 1
+%global gosec_release 2
 %global debug_package %{nil}
 
 Name:           gosec
@@ -25,7 +25,8 @@ Go security checker
 
 %build
 export CGO_ENABLED=0
-export GO_LD_FLAGS="-X main.Version=%{version}  \
+export GO_LD_FLAGS="-s \
+                   -X main.Version=%{version}  \
                    -X main.GitTag=v%{version} \
                    -X main.BuildDate=$(date -u -d "@${SOURCE_DATE_EPOCH}" +%Y-%m-%dT%H:%M:%SZ)"
 go build -o %{name} -trimpath -ldflags="${GO_LD_FLAGS}" ./cmd/gosec/...

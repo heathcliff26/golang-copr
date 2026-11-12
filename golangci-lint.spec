@@ -1,5 +1,5 @@
 %global gocilint_version 2.15.0
-%global gocilint_release 1
+%global gocilint_release 2
 %global debug_package %{nil}
 
 Name:           golangci-lint
@@ -25,7 +25,8 @@ Fast linters Runner for Go
 
 %build
 export CGO_ENABLED=0
-export GO_LD_FLAGS="-X main.version=%{version}  \
+export GO_LD_FLAGS="-s \
+                   -X main.version=%{version}  \
                    -X main.commit=Copr \
                    -X main.date=$(date -u -d "@${SOURCE_DATE_EPOCH}" +%Y-%m-%dT%H:%M:%SZ)"
 go build -o %{name} -trimpath -ldflags="${GO_LD_FLAGS}" ./cmd/golangci-lint/...
